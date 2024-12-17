@@ -1,1 +1,15 @@
-
+- Originally implemented Categorical NB Classifier on the Base fraud dataset with SMOTE oversampling and 5-fold Cross Validation
+- Initial results showed near perfect results, but this was found to be an error caused by including the target value in the train data
+- Removing the data produced accuracy of 85% and precision of 5% wiht a huge amount of False-Positive values
+- This is due to what SMOTE does to the Prior Distribution for the Naive Bayes assumption
+- Massively boosting the prior distribution means we make it more likely for something to be fraud than what the distribution says
+- Removing the SMOTE oversampling fixed this, boosting accuracy to 97% and precision up to 15%, which still isn't great
+- This was across all data samples and only in the base. Still compiling results over all other skewed datasets
+- I think I've fit the max performance of a categorical model on the data, as oversampling is no longer a good option, and subsetting doesn't seem promising
+- However, after further review, I think that there is some good promise for implementing a Guassian NB Classifer. where the distributions of probabilites are fit to a bell curve.
+There's a few variabels whose distributions appear bell-shaped form the histograms. So, I am currently experimenting with using a subset of the Gaussian-like variables in a GaussianNB model.
+If these results are promising, that may be a good direction to head.
+-As of now, I'm thinking the greatest limitation to the model's ability to identify discrete trends. It can do well over count data, such as with Multinomial data, or purely continuous, but 
+putting this into a categorical application appears to have not been an optimal choice. This is due to everything being probability based, and there are other algorithms that make less assumptions
+that will more than likely produce much more actionable and interpretable results (Decision trees, clustering, SVMs).
+- Once the Gaussian results come in, I will go ahead and run across all datasets, to see if the base categorical model performed well in certain situations, which would still prove promising.
