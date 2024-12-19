@@ -1,0 +1,12 @@
+- Initially implemented KMeans with a distance metric and DBSCAN for outlier detection on the task
+- Started with outlier detection, but due to poor initial results, we pivoted to sample clustering
+- We implemented KMeans using majority voting to determine the cluster label, and then used the cluster label to determine the fraud label as our classification pipeline
+- We were still getting mostly poor results, so we decided to implement sampling techniques to see if we could improve the results, as the data was heavily skewed
+- We applied 3d PCA to the data to see if we could visualize the data and see if there were any trends that we could exploit, and found that the fraud cases were somewhat scattered around the entire dataset
+- We then implemented random undersampling and decided to attempt a more visual approach to the data. We implemented a PCA to reduce the data to 2 and 3 dimensions. We then plotted the data and saw that the data mostly seperated into two clusters, with the fraud data being on one side of the plot
+- We then tried KMeans again on the reduced data, and found that the results were much better than before.
+- We decided the then try both SMOTE and random over sampling to see if we could improve results further.
+- We also decided to play with the number of clusters to see if we could improve results further. To this end we implemented grid search to find the optimal number of clusters, PCA components, and sampling technique.
+- We also decided to attempt a few more clustering algorithms including KMeans++, KMedoids, Agglomerative Clustering, Gaussian Mixture Models, and Spectral Clustering. Out of these were were only able to run KMeans++ through our full pipeline, and Gaussian Mixture Models and Spectral Clustering through a partial pipeline.
+- Due to the size of the data mixed with the curse of dimensionality we were unable to get KMedoids and Agglomerative Clustering to run in a reasonable amount of time.
+- We ran everything that worked through our grid search and compared the results. We found that KMeans++ preformed about the same as KMeans. We also found that our clustering applications were only able to work sampled data.
